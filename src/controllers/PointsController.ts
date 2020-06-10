@@ -5,6 +5,25 @@ import Const from '../constants';
 
 class PointController {
 
+    async show(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const point = await knex(Const.TABLE_POINTS)
+            .where('id', id)
+            .first();
+
+        if(!point) {
+            response.status(400).json({ message: 'Point not found.'});
+        }
+
+        const items = await knex('items')
+            .join(Const.TABLE_POINTS_ITEMS, 'items.id', '=', 'points_items.item_id')
+            .where('points_items.point_id', id)
+            .select('items.title');
+
+        response.json({ point, items });
+    }
+
     async create(request: Request, response: Response) {
         const {
             image,
