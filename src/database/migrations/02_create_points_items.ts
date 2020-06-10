@@ -1,9 +1,9 @@
 import Knex from 'knex';
 
-const TABLE_NAME = 'points_items'
+import Const from '../../constants';
 
 export async function up(knex: Knex){
-    return knex.schema.createTable(TABLE_NAME, table => {
+    return knex.schema.createTable(Const.TABLE_POINT_ITEMS, table => {
         table.increments('id').primary();
         
         table.integer('point_id')
@@ -19,5 +19,5 @@ export async function up(knex: Knex){
 }
 
 export async function down(knex: Knex){
-    return knex.schema.dropTable(TABLE_NAME);
+    return knex.schema.dropTable(Const.TABLE_POINT_ITEMS);
 }

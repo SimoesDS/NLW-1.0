@@ -17,8 +17,8 @@ class PointController {
         }
 
         const items = await knex('items')
-            .join(Const.TABLE_POINTS_ITEMS, 'items.id', '=', 'points_items.item_id')
-            .where('points_items.point_id', id)
+            .join(Const.TABLE_POINT_ITEMS, 'items.id', '=', 'point_items.item_id')
+            .where('point_items.point_id', id)
             .select('items.title');
 
         response.json({ point, items });
@@ -61,7 +61,7 @@ class PointController {
             };
         });
     
-        await trx(Const.TABLE_POINTS_ITEMS).insert(pointItems);
+        await trx(Const.TABLE_POINT_ITEMS).insert(pointItems);
         
         await trx.commit();
     
