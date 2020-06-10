@@ -1,6 +1,8 @@
 import express from 'express';
 import knex from './database/connection';
 
+import Const from './constants';
+
 const routes = express.Router();
 
 routes.get('/items', async (request, response) => {
@@ -30,7 +32,9 @@ routes.post('/points', async (request, response) => {
         items
     } = request.body;
     
-    await knex('points').insert({
+    const trx = await knex.transaction();
+
+    const insertedIds = await trx(Const.TABLE_POINTS).insert({
         image: 'image-fake',
         name,
         email,
@@ -40,6 +44,17 @@ routes.post('/points', async (request, response) => {
         city,
         uf
     });
+
+    const point_id = insertedIds[0];
+
+    const pointItems = items.map( (item: number) => {
+        return {
+            item_id: item,
+            point_id
+        };
+    });
+
+    await trx(Const.TABLE_POINTS_ITEMS ).insert(pointItems);
 
     return response.json({ success: true });
 });
