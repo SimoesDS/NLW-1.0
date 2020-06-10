@@ -8,8 +8,8 @@ const routes = express.Router();
 const itemsController = new ItemsController();
 const pointsController = new PointsController();
 
-routes.get('/items', itemsController.create);
-
+// index, show, create, update, delete
+routes.get('/items', itemsController.index);
 routes.post('/points', pointsController.create);
 
 export default routes;
