@@ -6,9 +6,9 @@
       "type": "node",
       "request": "launch",
       "protocol": "inspector",
-      "cwd": "${workspaceRoot}",
-      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-node-dev",
-      "args": ["${workspaceRoot}/src/server.ts"],
+      "cwd": "${workspaceRoot}/server",
+      "runtimeExecutable": "${workspaceRoot}/server/node_modules/.bin/ts-node-dev",
+      "args": ["${workspaceRoot}/server/src/server.ts"],
       "restart": true
     }
   ]
