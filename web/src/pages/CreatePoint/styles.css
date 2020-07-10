@@ -201,3 +201,38 @@
   background: #E1FAEC;
   border: 2px solid #34CB79;
 }
+
+#page-registration-completed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  justify-content: center;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  animation: fadeIn 0.2s;
+  opacity: 0.96;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.96;
+  }
+
+
+}
+
+#page-registration-completed h1 {
+  color: white;
+}
+
+.icon-check-circle {
+  height: 3em;
+  width: 3em;
+  margin: auto auto 0 auto;
+}
